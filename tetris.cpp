@@ -11,10 +11,13 @@ int main(int argc, char const *argv[]) {
   int boardHeight, boardWidth, piecesQuantity;
   std::vector<int> activePieces;
   std::queue <int> sequence;
+  state *gameTree = new state;
 
   loadInstance(archiveName, boardHeight, boardWidth, piecesQuantity, activePieces, sequence);
 
-  int board[boardWidth][boardWidth];
+  initBoard(gameTree, boardWidth, boardHeight);
+
+
 
   // Prints
   std::cout << "boardHeight: " << boardHeight << std::endl;
@@ -37,5 +40,15 @@ int main(int argc, char const *argv[]) {
   }
 
   std::cout << std::endl;
+
+  std::cout << "gameTree: " << '\n';
+
+  for (int i = 0; i < boardHeight; i++) {
+    for (int j = 0; j < boardWidth; j++) {
+      std::cout << gameTree->board[i][j];
+    }
+    std::cout << '\n';
+  }
+
   return 0;
 }

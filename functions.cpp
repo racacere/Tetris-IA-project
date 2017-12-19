@@ -3,6 +3,7 @@
 #include <queue>
 #include <vector>
 #include <string>
+#include "functions.h"
 
 // Split string function
 const std::vector<std::string> explode(const std::string& s, const char& c)
@@ -61,4 +62,19 @@ void loadInstance(const std::string& archiveName, int& boardHeight, int& boardWi
 
   // close archive
   instance.close();
+}
+
+void initBoard(state *&gameTree, int boardWidth, int boardHeight) {
+  gameTree->prevStep = NULL; // This is the first node of game tree
+
+  // Init board with zeros
+	for (int i = 0; i < boardHeight; i++) {
+    for (int j = 0; j < boardWidth; j++) {
+      gameTree->board[i][j] = 0;
+    }
+	}
+
+  gameTree->totalDeletedLines = 0;
+  gameTree->thisStateDeletedLines = 0;
+  gameTree->stepNumber = 0;
 }
